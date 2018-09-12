@@ -5,15 +5,17 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.Scanner;
+
 public class MoneyCalculator {
-    
+    // Metodo CIPO
+    private double ammount;
+    private double exchangerate;
+    private String currency; 
     
     public static void main(String[] args) throws IOException {
-        System.out.println("Introduce Cantidad a cambiar: ");
-        Scanner s = new Scanner(System.in);
-        double amount = s.nextDouble(); 
-        double exchangerate = getExchangeRate("USD", "EUR");
-        System.out.println(amount + " Un dolar equivale a " + exchangerate*amount + " euros");
+        MoneyCalculator mc = new MoneyCalculator();
+        mc.control();
+        
     }
     
     /**
@@ -36,6 +38,27 @@ public class MoneyCalculator {
         }
         return -1.;
     }   
+
+    private void control() throws IOException {
+        input(); process(); output();
+    }
+
+    private void input() {
+        System.out.println("Introduzca cantidad: ");
+        Scanner s = new Scanner(System.in); 
+        ammount = Double.parseDouble(s.next()); 
+        
+        System.out.println("Introduce Divisa");
+        currency = s.next(); 
+    }
+
+    private void process() throws IOException {
+        exchangerate = getExchangeRate(currency, "EUR"); 
+    }
+
+    private void output() {
+        System.out.println(ammount + currency + " = " + ammount*exchangerate + " €");
+    }
     
     
 }
