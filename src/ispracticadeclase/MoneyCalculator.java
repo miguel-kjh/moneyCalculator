@@ -10,7 +10,8 @@ public class MoneyCalculator {
     // Metodo CIPO
     private double ammount;
     private double exchangerate;
-    private String currency; 
+    private String currencyfrom; 
+    private String currencyTo; 
     
     public static void main(String[] args) throws IOException {
         MoneyCalculator mc = new MoneyCalculator();
@@ -48,16 +49,19 @@ public class MoneyCalculator {
         Scanner s = new Scanner(System.in); 
         ammount = Double.parseDouble(s.next()); 
         
-        System.out.println("Introduce Divisa");
-        currency = s.next(); 
+        System.out.println("Introduce Divisa origen");
+        currencyfrom = s.next().toUpperCase(); 
+        
+        System.out.println("Introduce Divisa destino");
+        currencyTo = s.next().toUpperCase(); 
     }
 
     private void process() throws IOException {
-        exchangerate = getExchangeRate(currency, "EUR"); 
+        exchangerate = getExchangeRate(currencyfrom, currencyTo); 
     }
 
     private void output() {
-        System.out.println(ammount + currency + " = " + ammount*exchangerate + " €");
+        System.out.println(ammount + " " +currencyfrom + " = " + ammount*exchangerate + " "  + currencyTo);
     }
     
     
