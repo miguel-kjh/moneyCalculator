@@ -1,4 +1,4 @@
-package ispracticadeclase;
+package moneyCalculator_Model;
 
 public class Currency {
     private final String code;
